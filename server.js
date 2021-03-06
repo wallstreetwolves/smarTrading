@@ -15,8 +15,10 @@ const methodOverride = require('method-override');
 
 // postgresql
 const pg = require('pg');
-const client = new pg.Client(process.env.DATABASE_URL);
-// const client = new pg.Client({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
+// Local Database
+// const client = new pg.Client(process.env.DATABASE_URL);
+// Heroku Database
+const client = new pg.Client({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
 
 //Application Setup
 
@@ -36,7 +38,9 @@ server.post('/contact', contactHandler);
 
 // ------------------------------
 
-
+function homeRoute(req, res) {
+    res.render('pages/index');
+}
 
 
 
