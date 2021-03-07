@@ -1,4 +1,115 @@
-body{
+html {
+    overflow: hidden ;
     background-color: black;
+    background: url(/img/background.gif) no-repeat bottom left fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+body{
+    /* min-height: 100%; */
     color: white;
+    position: relative;
+}
+
+header{
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    align-items: center;
+}
+
+#logo img{
+    width: 200px;
+    max-height: 100px;
+}
+
+header nav{
+    font-size: 3vh;
+    text-align: end;
+    padding-right: 5%;
+}
+
+header nav>a{
+    color: white;
+    padding: 10px;
+}
+
+nav form{
+    display: inline;
+    padding: 10px;
+}
+
+nav form button{
+    width: 15vh;
+    font-family: serif;
+    font-size: 3vh;
+    border: none;
+    border-radius: 15px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+fieldset{
+    background-color: rgba(255, 255, 255, 0.466);
+    border-radius: 20px;
+    width: 25%;
+    height: 40vh;
+    padding: 30px;
+    margin: 20px;
+    text-align: center;
+}
+
+#loginform {
+    display: block;
+    position: absolute;
+    z-index: 1;
+    top: 100px;
+    right: 0;
+    line-height: 1.5;
+}
+
+#loginform input{
+    font-size: 2.2vh;
+    padding: 5px;
+}
+#loginform a{
+    font-size: 2.5vh;
+}
+
+#sub{
+    width: 80%;
+    /* background-color: ; */
+}
+
+
+#mainButton{
+    position: relative;
+    margin: auto;
+    text-align: center;
+    top: 15vh;
+}
+
+#start {
+	cursor:pointer;
+    color: rgba(255, 255, 255, 0.8);
+    background: #12b82e;
+    padding: 15px 40px;
+    border:none;
+    font-size: 3vh;
+    width: 30vh;
+    height: 7.5vh;
+    border-radius: 1.5vh;
+    font-weight: normal;
+    text-transform: uppercase;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 0 12px 2px #63ff6359;
+}
+  
+#start:hover {
+    color: rgba(255, 255, 255, 1);
+    background: #02d302;
+    box-shadow: 0 0px 20px 7px #63ff6359;
 }
