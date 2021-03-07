@@ -4,9 +4,15 @@
 <%- include('../layout/head') %>
 
     <body>
-<h1>Hello</h1>
+        <%- include('../layout/header') %>
+            <main>
+                <form action="/trade" id="mainButton">
+                    <button id="start">Start</button>
+                </form>
+            </main>
 
-        <%- include('../layout/footer') %>
+
+            <%- include('../layout/footer') %>
     </body>
 
 </html>
