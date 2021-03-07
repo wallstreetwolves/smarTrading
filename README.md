@@ -38,7 +38,7 @@ $ npm i express cors superagent ejs dotenv pg method-override
 #### Sign Up
 ![Signup](public/img/Wireframe/Signup.PNG)
 #### Analytics
-![Analytics](public/img/Wireframe/About.PNG)
+![Analytics](public/img/Wireframe/Analytics.PNG)
 #### News
 ![News](public/img/Wireframe/News.PNG)
 #### Currency Converter
