@@ -27,12 +27,12 @@ server.use(express.urlencoded({ extended: true }));
 server.set('view engine', 'ejs');
 
 // Route definitions
-server.get('/', homeRoute);
-server.post('/signup', signHandler);
-server.get('/analytics', stockHandler);
-server.get('/news', newsHandler);
-server.post('/currency', currHandler);
-server.post('/contact', contactHandler);
+// server.get('/', homeRoute);
+// server.post('/signup', signHandler);
+// server.get('/analytics', stockHandler);
+// server.get('/news', newsHandler);
+// server.post('/currency', currHandler);
+// server.post('/contact', contactHandler);
 
 // ------------------------------
 
@@ -40,7 +40,25 @@ server.post('/contact', contactHandler);
 
 
 
+server.get('/currency', (req, res) => {
+    res.render('pages/currency');
+})
 
+server.get('/result', (req, res) => {
+    let fromValue = req.query.currency;
+    let toValue = req.query.currencyTo;
+    let amount = req.query.amount;
+    let url = `https://api.getgeoapi.com/api/v2/currency/convert?api_key=c702e3ea2e9b3cdd104a7aa7bbc328e839c54850&from=${fromValue}&to=${toValue}&amount=${amount}&format=json`;
+    superagent.get(url)
+        .then(booksResult => {
+            console.log(booksResult.body.rates[toValue].currency_name);
+            res.render('pages/currencyResult', { amount: booksResult.body.rates[toValue].rate_for_amount, toVal: booksResult.body.rates[toValue].currency_name });
+        }).catch(() => {
+            console.log(req.query.currency);
+        }
+        )
+
+})
 
 
 
