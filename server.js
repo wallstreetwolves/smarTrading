@@ -20,9 +20,9 @@ var session = require('express-session');
 // postgresql
 const pg = require('pg');
 // Local Database
-// const client = new pg.Client(process.env.DATABASE_URL);
+const client = new pg.Client(process.env.DATABASE_URL);
 // Heroku Database
-const client = new pg.Client({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
+// const client = new pg.Client({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
 
 //Application Setup
 app.use(methodOverride('_method'));
@@ -39,7 +39,7 @@ app.use(session({
 
 // Route definitions
 app.get('/', homeRoute);
-// app.post('/signup', signHandler);
+app.get('/signup', signHandler);
 // app.get('/trade', stockHandler);
 // app.get('/news', newsHandler);
 // app.post('/currency', currHandler);
@@ -86,6 +86,10 @@ app.get('/home', function (req, res) {
     }
     res.end();
 });
+
+function signHandler(req, res) {
+    res.render('pages/signup')
+}
 
 
 

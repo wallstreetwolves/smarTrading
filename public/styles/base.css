@@ -1,11 +1,5 @@
-html {
-    overflow: hidden ;
-    background-color: black;
-    background: url(/img/background.gif) no-repeat bottom left fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+html{
+    background-color: #ddd;
 }
 
 body{
@@ -52,7 +46,7 @@ nav form button{
     cursor: pointer;
 }
 
-fieldset{
+fieldset#signin{
     background-color: rgba(255, 255, 255, 0.466);
     border-radius: 20px;
     width: 25%;
@@ -80,16 +74,19 @@ fieldset{
 }
 
 #sub{
-    width: 80%;
-    /* background-color: ; */
+    width: 75%;
 }
 
+main#index p{
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 2em;
+    padding: 8vh 0 4vh 0;
+}
 
 #mainButton{
-    position: relative;
-    margin: auto;
+    margin: 0 auto;
     text-align: center;
-    top: 15vh;
 }
 
 #start {

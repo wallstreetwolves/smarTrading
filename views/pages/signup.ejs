@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../layout/head') %>
+
+    <body>
+        <%- include('../layout/header') %>
+
+            <main>
+
+                <form name="frmInfo" action="/signup" method="POST">
+                    <fieldset id="signup">
+                        <input type="text" name="firstname" placeholder="First Name">
+                        <input type="text" name="lastname" placeholder="Last Name"><br>
+                        <input type="text" id="username" name="username" placeholder="Username"><br>
+                        <input type="email" id="email" name="email" placeholder="example@ex.com"><br>
+                        <input type="password" id="password" name="password" placeholder="Password"><br>
+                        <input type="submit" id="btn_submit" value="Sign Up">
+                    </fieldset>
+                </form>
+
+            </main>
+
+            <%- include('../layout/footer') %>
+    </body>
+
+</html>
