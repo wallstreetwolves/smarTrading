@@ -30,11 +30,11 @@ server.set('view engine', 'ejs');
 
 // Route definitions
 server.get('/', homeRoute);
-server.post('/signup', signHandler);
-server.get('/analytics', stockHandler);
-server.get('/news', newsHandler);
-server.post('/currency', currHandler);
-server.post('/contact', contactHandler);
+// server.post('/signup', signHandler);
+// server.get('/analytics', stockHandler);
+// server.get('/news', newsHandler);
+// server.post('/currency', currHandler);
+// server.post('/contact', contactHandler);
 
 // ------------------------------
 
