@@ -49,7 +49,10 @@ app.put('/trade', saveFun)
 // app.post('/currency', currHandler);
 // app.post('/contact', contactHandler);
 
-// ------------------------------
+
+// server.get('/trad', (req, res) => {
+
+
 
 let name, balance;
 let trigger;
@@ -62,6 +65,9 @@ function homeRoute(req, res) {
     }
 }
 
+// function homeRoute(req, res) {
+//     res.render('pages/index');
+// }
 
 function signin(req, res) {
     let username = req.body.username;
