@@ -25,7 +25,7 @@ const client = new pg.Client(process.env.DATABASE_URL);
 // const client = new pg.Client({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
 
 //Application Setup
-app.use(methodOverride('_method'));
+app.use(methodOverride('method'));
 app.use(cors());
 app.use(express.static('./public'));
 app.use(express.urlencoded({ extended: true }));
@@ -40,33 +40,43 @@ app.use(session({
 // Route definitions
 app.get('/', homeRoute);
 app.get('/signup', signHandler);
-// app.get('/trade', stockHandler);
+app.post('/signup', signupHandler);
+app.post('/auth', signin);
+app.post('/auth/signout', signout);
+app.get('/trade', stockHandler);
+app.put('/trade', saveFun)
 // app.get('/news', newsHandler);
 // app.post('/currency', currHandler);
 // app.post('/contact', contactHandler);
 
 // ------------------------------
 
-
+let name, balance;
+let trigger;
 
 function homeRoute(req, res) {
-    res.render('pages/index');
+    if (req.session.loggedin) {
+        res.render('pages/index', { profile: { username: req.session.username, name: name, balance: balance } });
+    } else {
+        res.render('pages/index', { profile: { username: '' } });
+    }
 }
 
 
-app.post('/auth', function (req, res) {
-    let username = `${req.body.username}`;
-    let password = `${req.body.password}`;
-    let SQL = `SELECT * FROM accounts WHERE username =$1 AND password =$2`;
+function signin(req, res) {
+    let username = req.body.username;
+    let password = req.body.password;
+    let SQL = `SELECT * FROM profiles WHERE username =$1 AND password =$2;`;
     let values = [username, password];
     if (username && password) {
         client.query(SQL, values)
-            .then(results => {
-                console.log(results.rows);
-                if (results.rows.length > 0) {
+            .then(result => {
+                if (result.rows.length > 0) {
                     req.session.loggedin = true;
                     req.session.username = username;
-                    res.redirect('/home');
+                    name = result.rows[0].firstname;
+                    balance = result.rows[0].balance;
+                    res.redirect('/');
                 } else {
                     res.send('Incorrect Username and/or Password!');
                 }
@@ -76,22 +86,61 @@ app.post('/auth', function (req, res) {
         res.send('Please enter Username and Password!');
         res.end();
     }
-});
-
-app.get('/home', function (req, res) {
-    if (req.session.loggedin) {
-        res.send('Welcome back, ' + req.session.username + '!');
-    } else {
-        res.send('Please login to view this page!');
-    }
-    res.end();
-});
+};
 
 function signHandler(req, res) {
     res.render('pages/signup')
 }
 
+function signupHandler(req, res) {
+    let { firstname, lastname, username, email, password } = req.body;
+    let SQL = `SELECT * FROM profiles WHERE username =$1 OR email =$2`;
+    let values = [username, email];
+    client.query(SQL, values)
+        .then(result => {
+            if (result.rows.length > 0) {
+                res.send('Username or email already exists. Sign in instead!')
+            } else {
+                let SQL1 = `INSERT INTO profiles
+            (firstName, lastName, username, email, password, balance)
+            VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;`;
+                let values1 = [firstname, lastname, username, email, password, 50000];
+                client.query(SQL1, values1)
+                    .then(result => {
+                        req.session.loggedin = true;
+                        req.session.username = username;
+                        name = result.rows[0].firstname;
+                        balance = result.rows[0].balance;
+                        res.redirect('/');
+                    })
+            }
+        })
+}
 
+function signout(req, res) {
+    req.session.loggedin = false;
+    res.redirect('/');
+}
+
+function stockHandler(req, res) {
+    if (!name) {
+        res.redirect('/');
+    } else {
+        res.render('pages/trade', { profile: { username: req.session.username, name: name, balance: balance } })
+    }
+}
+
+function saveFun(req, res) {
+    let newBalance = req.body.newBalance;
+    let username = req.session.username;
+    let SQL = `UPDATE profiles SET balance=$1 WHERE username=$2 RETURNING balance;`;
+    let values = [newBalance, username];
+    client.query(SQL, values)
+        .then(result => {
+            balance = result.rows[0].balance;
+            res.redirect('/trade');
+        })
+}
 
 
 

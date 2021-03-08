@@ -15,7 +15,7 @@
     </style>
 
     <body>
-        <header>
+        <header class="index">
             <picture id="logo">
                 <source media="(min-width:480px)" srcset="./img/logo/logo-dark.png">
                 <img src="./img/logo/logo-small.png" alt="logo" style="width:auto;">
@@ -25,19 +25,46 @@
                 <a href="/contact">Contact</a>
                 <a href="/about">About Us</a>
                 <form>
-                    <button type='button' id="login">Login</button>
+                    <% if (profile.username) { %>
+                        <button type='button' id="logged">
+                            <%= profile.username.charAt(0).toUpperCase() + profile.username.slice(1) %>
+                        </button>
+                        <% } else { %>
+                            <button type='button' id="login">Login</button>
+                            <% } %>
                 </form>
             </nav>
         </header>
         <div id='loginform' class="modal">
             <%- include('../layout/form')-%>
         </div>
-
-        <main id="index">
-            <p id="slogan">Build your net worth.</p>
-            <form action="/trade" id="mainButton">
-                <button id="start">Start</button>
+        <div id='profile' class="modal">
+            <form action="auth/signout" method="POST" class="form login">
+                <fieldset class="form_set">
+                    <div class="form__field">
+                        <label>Welcome Back, <%= profile.name %>!</label>
+                    </div>
+                    <div class="form__field">
+                        <label>Balance: $<%= profile.balance %> </label>
+                    </div>
+                    <div class="form__field">
+                        <input type="submit" value="Sign Out">
+                    </div>
+                </fieldset>
             </form>
+        </div>
+
+        <main class="index">
+            <p id="slogan">Build your net worth.</p>
+            <% if (profile.username) { %>
+                <form action="/trade" id="mainButton">
+                    <button id="start">Start</button>
+                </form>
+                <% } else { %>
+                    <form action="/signup" method="GET" id="mainButton">
+                        <button id="start">Start</button>
+                    </form>
+                    <% } %>
         </main>
 
         <%- include('../layout/footer') %>

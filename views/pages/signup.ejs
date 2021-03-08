@@ -5,15 +5,16 @@
     <body>
         <%- include('../layout/header') %>
 
-            <main>
+            <main class="signup">
 
                 <form name="frmInfo" action="/signup" method="POST">
                     <fieldset id="signup">
-                        <input type="text" name="firstname" placeholder="First Name">
-                        <input type="text" name="lastname" placeholder="Last Name"><br>
-                        <input type="text" id="username" name="username" placeholder="Username"><br>
-                        <input type="email" id="email" name="email" placeholder="example@ex.com"><br>
-                        <input type="password" id="password" name="password" placeholder="Password"><br>
+                        <input type="text" name="firstname" placeholder="First Name" required>
+                        <input type="text" name="lastname" placeholder="Last Name" required><br>
+                        <input type="text" id="username" name="username" placeholder="Username" required><br>
+                        <input type="email" id="email" name="email" placeholder="example@example.com" required><br>
+                        <input type="password" id="password" name="password" placeholder="Password" minlength="6"
+                            maxlength="15" required><br>
                         <input type="submit" id="btn_submit" value="Sign Up">
                     </fieldset>
                 </form>
