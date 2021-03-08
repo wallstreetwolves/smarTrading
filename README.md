@@ -57,3 +57,5 @@ $ npm i express cors superagent ejs dotenv pg method-override
 
 
 ## Credits and Collaborations:
+- [Form styling](https://codepen.io/marcobiedermann/pen/Fybpf)
+- [Styling](https://codepen.io/sylvmrtn/pen/zvvrXv)
