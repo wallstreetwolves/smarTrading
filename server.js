@@ -20,6 +20,11 @@ const client = new pg.Client(process.env.DATABASE_URL);
 // Heroku Database
 // const client = new pg.Client({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
 
+const fetch = require('node-fetch');
+
+const { response } = require('express');
+
+
 //Application Setup
 
 server.use(methodOverride('_method'));
@@ -29,22 +34,43 @@ server.use(express.urlencoded({ extended: true }));
 server.set('view engine', 'ejs');
 
 // Route definitions
-server.get('/', homeRoute);
+// server.get('/', homeRoute);
 // server.post('/signup', signHandler);
 // server.get('/analytics', stockHandler);
 // server.get('/news', newsHandler);
 // server.post('/currency', currHandler);
 // server.post('/contact', contactHandler);
-server.get('/trade', (req, res) => {
+
+// server.get('/trad', (req, res) => {
+
+// }
+
+
+server.get('/a', (req, res) => {
     res.render('pages/trade')
 })
 
+server.get('/b', (req, res) => {
+    res.render('pages/form')
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 // ------------------------------
 
-function homeRoute(req, res) {
-    res.render('pages/index');
-}
-
+// function homeRoute(req, res) {
+//     res.render('pages/index');
+// }
 
 
 
