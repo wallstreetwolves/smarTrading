@@ -44,13 +44,12 @@ app.post('/signup', signupHandler);
 app.post('/auth', signin);
 app.post('/auth/signout', signout);
 app.get('/trade', stockHandler);
-app.put('/trade', saveFun)
+app.put('/trade', saveFun);
+server.get('/currency', currencyRender);
+server.post('/currency', currencyResult);
 // app.get('/news', newsHandler);
 // app.post('/currency', currHandler);
 // app.post('/contact', contactHandler);
-
-
-// server.get('/trad', (req, res) => {
 
 
 
@@ -148,10 +147,23 @@ function saveFun(req, res) {
         })
 }
 
+function currencyRender (req, res) {
+    res.render('pages/currency', { amount: 0 });
+}
 
-
-
-
+function currencyResult (req, res) {
+    let fromValue = req.body.currency;
+    let toValue = req.body.currencyTo;
+    let amount = req.body.amount;
+    let url = `https://api.getgeoapi.com/api/v2/currency/convert?api_key=c702e3ea2e9b3cdd104a7aa7bbc328e839c54850&from=${fromValue}&to=${toValue}&amount=${amount}&format=json`;
+    superagent.get(url)
+        .then(booksResult => {
+            console.log(booksResult.body.rates[toValue].currency_name);
+            res.render('pages/currency', { amount: booksResult.body.rates[toValue].rate_for_amount, toVal: booksResult.body.rates[toValue].currency_name });
+        }).catch(() => {
+            console.log(req.query.currency);
+        })
+}
 
 
 

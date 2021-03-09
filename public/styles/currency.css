@@ -1,0 +1,22 @@
+main{
+ display: grid;
+ grid-template-columns: 4fr 1fr;
+ grid-template-rows: 15% 85%;
+ height: 100vh;
+ 
+}
+#header{
+    grid-row: 1/2;
+    grid-column: 1/2;
+    background-color: gray;
+}
+.jumbotron{
+    grid-row: 2/3;
+    grid-column: 1/2;
+}
+
+#sidebar{
+    background-color: gray;
+    grid-column: 2/3;
+    grid-row: 1/3;
+}
