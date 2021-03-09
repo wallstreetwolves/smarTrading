@@ -49,8 +49,12 @@
 
         .container {
             border-radius: 5px;
-            background-color: #0f3057;
+            background-color: rgb(1, 4, 39);
             padding: 40px;
+            width: 60%;
+            margin: auto;
+            height: 60vh;
+
         }
 
         .col-25 {
@@ -88,16 +92,22 @@
             color: #ccc;
         }
 
-        .jumbotron {
+        /* .jumbotron {
             position: relative;
         }
 
         .container {
-            width: 50%;
+            width: 55%;
             position: absolute;
             top: 15vh;
             left: 45vh;
 
+        } */
+
+        #myHeader {
+            margin-left: 45%;
+            margin-top: 45px;
+            font-size: larger;
         }
     </style>
     <link rel="stylesheet" href="styles/reset.css">
@@ -108,9 +118,10 @@
     <main>
         <div id="header"></div>
         <div class="jumbotron">
+            <h2 id="myHeader">Currency Calculator</h2>
             <div class="container">
-                <h2 class="headerClass">Currency Calculator</h2>
-                <form class="form-inline" method="GET" action="/result">
+                <!-- <h2 class="headerClass">Currency Calculator</h2> -->
+                <form class="form-inline" method="POST" action="/currency">
                     <div class="form-group mx-sm-3 mb-2">
                         <label>Convert From :</label>
                         <select class="form-control" name="currency" required>
@@ -195,13 +206,45 @@
                         <label for="amount">Enter Your Amount :</label>
                         <input type="number" class="form-control" name="amount" required />
                     </div>
-                    <button class="btn calculate-btn btn-primary mb-2">Show me the result!</button>
+
+                    <button class="btn calculate-btn btn-primary mb-2" id="send_profile">Show me the result!</button>
+
                 </form>
+
+                <% if (amount){%>
+                    <div style="color: white;">
+
+                        The Result is : <%=amount %>
+                            <%=toVal%>
+                    </div>
+                    <%}%>
+
             </div>
         </div>
         <div id="sidebar"></div>
     </main>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <!-- <script>
+        $('#send_profile').click(function () {
+            $.ajax({
+                global: false,
+                type: 'GET',
+                url: /result,
+                dataType: 'html',
+                data: {
+                    name: $("#profile_name").val(),
+                    surname: $("#profile_surname").val(),
+                    age: $("#profile_age").val()
+                },
+                success: function (result) {
+                    console.log(result);
+                },
+                error: function (request, status, error) {
+                    serviceError();
+                }
+            });
+        })
+    </script> -->
 </body>
 
 </html>
