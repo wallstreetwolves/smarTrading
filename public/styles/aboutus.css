@@ -32,7 +32,7 @@ body {
     width: 100%;
     height: 0;
     border-radius: 50%;
-    background-color: #1369ce;
+    background-color: rgb(179, 179, 179);
     position: absolute;
     bottom: 135%;
     right: 0;
@@ -51,7 +51,7 @@ body {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background-color: #1369ce;
+    background-color: rgb(179, 179, 179);
     position: absolute;
     top: 0;
     left: 0;
@@ -82,7 +82,7 @@ body {
     width: 100%;
     padding: 0;
     margin: 0;
-    background-color: #1369ce;
+    background-color: rgb(179, 179, 179);
     position: absolute;
     bottom: -100px;
     left: 0;
@@ -107,7 +107,7 @@ body {
   }
   
   .our-team .social li a:hover {
-    color: #1369ce;
+    color: rgb(179, 179, 179);
     background-color: #f7f5ec;
   }
   
