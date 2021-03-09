@@ -37,7 +37,9 @@
 
 <body>
     <main>
-        <div id="header"></div>
+        <div id="header">
+            <%- include('../layout/header') %>
+        </div>
         <div id="platFormContainer">
 
             <div id="tradePlatform">
@@ -55,19 +57,19 @@
         </div>
     </main>
     <section class="section">
-      
+
         <div id="save" class="Save">
 
             <form action="/trade/?method=put" method="POST">
                 <input id="balanceM" name="newBalance" type="hidden">
                 <button id="submitBtn" type="submit"> X </button>
             </form>
-        
+
         </div>
 
         <div id="save" class="unSave" style="display: none;">
             <button id="unSave"> X </button>
-        
+
         </div>
         <div class="containter">
             <div id="logo"></div>
@@ -76,13 +78,14 @@
                 <p></p>
                 <div id="imgArrow"></div>
             </div>
-            <div id="timer">  </div>
+            <div id="timer"> </div>
             <div id="chartTrade"></div>
 
             <div id="formDiv">
                 <form id="buyForm" action="">
-                    <label id="balance" for="balance"><%=profile.balance%>
-                        </label><br>
+                    <label id="balance" for="balance">
+                        <%=profile.balance%>
+                    </label><br>
                     <label for="Stocks" required>Stocks</label><br>
                     <input type="number"><br>
                     <label for="Price">Last Price</label><br>
