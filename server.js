@@ -37,7 +37,9 @@ server.set('view engine', 'ejs');
 // ------------------------------
 
 
-
+server.get('/', (req, res) => {
+    res.render('pages/about', { amount: 0 });
+})
 
 
 server.get('/currency', (req, res) => {
