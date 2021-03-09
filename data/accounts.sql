@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS profiles (
   username varchar(50) NOT NULL,
   email CHAR(128),
   password CHAR(60),
-  balance INT DEFAULT 50000
+  balance FLOAT DEFAULT 50000
 );
 
 -- UPDATE accounts SET account_id=profiles.id FROM (SELECT * FROM profiles) AS profiles WHERE profiles.username=accounts.username;

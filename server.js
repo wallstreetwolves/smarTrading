@@ -59,6 +59,11 @@ let trigger;
 
 function homeRoute(req, res) {
     if (req.session.loggedin) {
+
+        console.log(balance);
+        // let SQL = `SELECT * `
+
+
         res.render('pages/index', { profile: { username: req.session.username, name: name, balance: balance } });
     } else {
         res.render('pages/index', { profile: { username: '' } });

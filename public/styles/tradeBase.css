@@ -139,13 +139,13 @@ main{
 .redT{
     width: 25px;
     height: 25px;
-    background-image:url();
+    background-image:url(../img/companies/AAPL.png);
     background-size: cover;
 }
 .greyT{
     width: 25px;
     height: 25px;
-    background-image:url();
+    background-image:url(../img/companies/KO.png);
     background-size: cover;
 }
 /*---------------------------------------------Styling buy & sell Form----------------------------------------*/
