@@ -87,6 +87,7 @@ main.currency #myHeader {
     margin: 40px auto 20px auto;
     font-size: 4vh;
     text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     font-weight: 700;
     color: black;
 }
