@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles/reset.css">
-    <link rel="stylesheet" href="styles/base.css">
-
+    <link rel="stylesheet" href="styles/tradeBase.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
 
     <script id="companyTemp" type="text/-template-mustache">
@@ -55,6 +55,20 @@
         </div>
     </main>
     <section class="section">
+      
+        <div id="save" class="Save">
+
+            <form action="/trade/?method=put" method="POST">
+                <input id="balanceM" name="newBalance" type="hidden">
+                <button id="submitBtn" type="submit"> X </button>
+            </form>
+        
+        </div>
+
+        <div id="save" class="unSave" style="display: none;">
+            <button id="unSave"> X </button>
+        
+        </div>
         <div class="containter">
             <div id="logo"></div>
             <div id="profile"></div>
@@ -62,15 +76,17 @@
                 <p></p>
                 <div id="imgArrow"></div>
             </div>
-            <div id="timer"></div>
+            <div id="timer">  </div>
             <div id="chartTrade"></div>
 
             <div id="formDiv">
                 <form id="buyForm" action="">
-                    <label id="balance" for="balance"></label><br>
+                    <label id="balance" for="balance"><%=profile.balance%>
+                        </label><br>
                     <label for="Stocks" required>Stocks</label><br>
                     <input type="number"><br>
                     <label for="Price">Last Price</label><br>
+                    <label id="ownStock" for=""> Your Own Stocks : 0 </label>
                     <h1></h1>
                     <button id="btnS" type="button">SELL</button>
                     <button id="btnB" type="button">BUY</button><br>
