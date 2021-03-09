@@ -159,7 +159,6 @@ function currencyResult(req, res) {
     let url = `https://api.getgeoapi.com/api/v2/currency/convert?api_key=c702e3ea2e9b3cdd104a7aa7bbc328e839c54850&from=${fromValue}&to=${toValue}&amount=${amount}&format=json`;
     superagent.get(url)
         .then(booksResult => {
-            console.log('yes', booksResult.body.rates[toValue].currency_name);
             res.render('pages/currency', { amount: booksResult.body.rates[toValue].rate_for_amount, toVal: booksResult.body.rates[toValue].currency_name });
         })
         .catch(() => {
@@ -183,20 +182,12 @@ function Analytic(req, res) {
     const decreaseDate = new Date(Date.now() - 1814400000 - 259200000);
     const date = new Date(decreaseDate).toISOString().slice(0, 10)
     allData = []
-    // let locData = require('./public/temprData.json');
-    // res.render("pages/analytics",{newsData:locData})
 
-
-    // }
-
-    // console.log(date.toString());
-    // console.log(date);
 
     //////-------------------while
     selected = [];
     while (count < 16) {
         count++;
-        console.log(count);
         do {
             if (count == 6) {
                 trigger = true
@@ -209,8 +200,6 @@ function Analytic(req, res) {
         let ApiKey = process.env.API_KEY_NEWS
         let url = `http://newsapi.org/v2/everything?qInTitle=${companies[index]}%stock&from=${date.toString()}&sortBy=popularity&language=en&apiKey=${ApiKey}`
         superagent.get(url).then(result => {
-            // console.log(typeof(.title));
-
             if (result.body.articles.length > 0) {
                 let temp = new News(result.body.articles[0])
                 allData.push(temp)
@@ -219,9 +208,6 @@ function Analytic(req, res) {
             else {
                 count--
             }
-            // console.log("d");
-            // res.send(allData)
-            // console.log(allData);
 
 
             return allData
