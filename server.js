@@ -20,11 +20,12 @@ var session = require('express-session');
 // postgresql
 const pg = require('pg');
 // Local Database
-const client = new pg.Client(process.env.DATABASE_URL);
+// const client = new pg.Client(process.env.DATABASE_URL);
 // Heroku Database
-// const client = new pg.Client({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
+const client = new pg.Client({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
 
 //Application Setup
+
 app.use(methodOverride('method'));
 app.use(cors());
 app.use(express.static('./public'));
@@ -44,18 +45,17 @@ app.post('/signup', signupHandler);
 app.post('/auth', signin);
 app.post('/auth/signout', signout);
 app.get('/trade', stockHandler);
-app.put('/trade', saveFun)
+app.put('/trade', saveFun);
+app.get('/currency', currencyRender);
+app.post('/currency', currencyResult);
 // app.get('/news', newsHandler);
 // app.post('/currency', currHandler);
 // app.post('/contact', contactHandler);
 
 
-// server.get('/trad', (req, res) => {
-
-
 
 let name, balance;
-let trigger;
+
 
 function homeRoute(req, res) {
     if (req.session.loggedin) {
@@ -153,12 +153,99 @@ function saveFun(req, res) {
         })
 }
 
+function currencyRender(req, res) {
+    res.render('pages/currency', { amount: 0 });
+}
+
+function currencyResult(req, res) {
+    let fromValue = req.body.currency;
+    let toValue = req.body.currencyTo;
+    let amount = req.body.amount;
+    let url = `https://api.getgeoapi.com/api/v2/currency/convert?api_key=c702e3ea2e9b3cdd104a7aa7bbc328e839c54850&from=${fromValue}&to=${toValue}&amount=${amount}&format=json`;
+    superagent.get(url)
+        .then(booksResult => {
+            res.render('pages/currency', { amount: booksResult.body.rates[toValue].rate_for_amount, toVal: booksResult.body.rates[toValue].currency_name });
+        })
+        .catch(() => {
+            console.log('catch ', req.query.currency);
+        })
+}
+
+///---------------analytic rout and function-------------------\\\
+
+app.get('/analytics', Analytic)
+//------------------------------function anayltic
+let trigger = false
+let count = 1;
+let selected = [];
+let allData = [];
+function Analytic(req, res) {
+    const companies = ["apple", "microsoft", "amazon", "google", "facebook",
+        "Alibaba", "Tesla", "Visa", "Walmart", "Disney", "Bank of America Corp", "NVIDIA ",
+        "Mastercard", "Paypal", "Intel", "Netflix", "Coca-Cola", "Adobe",
+        "Nike", "Starbucks", "Caterpillar", "Oracle", "Cisco", "Pfizer"]
+    const decreaseDate = new Date(Date.now() - 1814400000 - 259200000);
+    const date = new Date(decreaseDate).toISOString().slice(0, 10)
+    allData = []
 
 
+    //////-------------------while
+    selected = [];
+    while (count < 16) {
+        count++;
+        do {
+            if (count == 6) {
+                trigger = true
+            }
+            var index = getrandomnumber()
+        }
+
+        while (selected.includes(companies[index]))
+        selected.push(companies[index])
+        let ApiKey = process.env.API_KEY_NEWS
+        let url = `http://newsapi.org/v2/everything?qInTitle=${companies[index]}%stock&from=${date.toString()}&sortBy=popularity&language=en&apiKey=${ApiKey}`
+        superagent.get(url).then(result => {
+            if (result.body.articles.length > 0) {
+                let temp = new News(result.body.articles[0])
+                allData.push(temp)
+            }
+
+            else {
+                count--
+            }
 
 
+            return allData
 
 
+        }).then((resultnew) => {
+            if (allData.length == 14) {
+                count = 1
+                res.render("pages/analytics", { newsData: resultnew })
+
+            }
+
+        })
+    }
+}
+/////-----------end while
+
+//////random num
+function getrandomnumber() {
+
+    let randomnum = Math.floor(Math.random() * 25);
+
+    return randomnum;
+}
+//////////// constructer
+function News(data) {
+    this.author = data.author
+    this.title = data.title
+    this.description = data.description
+    this.urlToImage = data.urlToImage
+    this.publishedAt = data.publishedAt
+    this.content = data.content
+}
 
 // ------------------------------
 
