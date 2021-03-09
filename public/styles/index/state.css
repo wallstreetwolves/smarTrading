@@ -1,0 +1,10 @@
+#start:hover {
+    color: rgba(255, 255, 255, 1);
+    background: #02d359;
+    box-shadow: 0 0px 10px 5px #63ff6359;
+}
+
+header.index a:focus, .form a:focus,
+header.index a:hover, .form a:hover {
+  text-decoration: underline;
+}
