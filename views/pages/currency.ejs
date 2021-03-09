@@ -1,250 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<%- include('../layout/head') %>
     <style>
         * {
             box-sizing: border-box;
-
-        }
-
-        input[type=text],
-        input[type=number],
-        select,
-        textarea {
-            width: 100%;
-            padding: 12px;
-            margin: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            resize: vertical;
-        }
-
-        label {
-            color: #ccc;
-        }
-
-        label {
-            padding: 12px 12px 12px 0;
-            display: inline-block;
-        }
-
-        .calculate-btn {
-            background-color: #c70039;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            float: right;
-        }
-
-        input[type=submit]:hover {
-            background-color: #1791b1;
-        }
-
-        .container {
-            border-radius: 5px;
-            background-color: rgb(1, 4, 39);
-            padding: 40px;
-            width: 60%;
-            margin: auto;
-            height: 60vh;
-
-        }
-
-        .col-25 {
-            float: left;
-            width: 25%;
-            margin-top: 6px;
-        }
-
-        .col-75 {
-            float: left;
-            width: 75%;
-            margin-top: 6px;
-        }
-
-        /* Clear floats after the columns */
-        .row:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-
-        /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-        @media screen and (max-width: 600px) {
-
-            .col-25,
-            .col-75,
-            input[type=submit] {
-                width: 100%;
-                margin-top: 0;
-            }
-        }
-
-        .headerClass {
-            text-align: center;
-            color: #ccc;
-        }
-
-        /* .jumbotron {
-            position: relative;
-        }
-
-        .container {
-            width: 55%;
-            position: absolute;
-            top: 15vh;
-            left: 45vh;
-
-        } */
-
-        #myHeader {
-            margin-left: 45%;
-            margin-top: 45px;
-            font-size: larger;
         }
     </style>
-    <link rel="stylesheet" href="styles/reset.css">
-    <link rel="stylesheet" href="styles/currency.css">
-</head>
 
-<body>
-    <main>
-        <div id="header"></div>
-        <div class="jumbotron">
-            <h2 id="myHeader">Currency Calculator</h2>
-            <div class="container">
-                <!-- <h2 class="headerClass">Currency Calculator</h2> -->
-                <form class="form-inline" method="POST" action="/currency">
-                    <div class="form-group mx-sm-3 mb-2">
-                        <label>Convert From :</label>
-                        <select class="form-control" name="currency" required>
-                            <option value="EUR" selected>EUR</option>
-                            <option value="JOD">JOD</option>
-                            <option value="USD">USD</option>
-                            <option value="AED">AED</option>
-                            <option value="CAD">CAD</option>
-                            <option value="CHF">CHF</option>
-                            <option value="CLP">CLP</option>
-                            <option value="CNY">CNY</option>
-                            <option value="COP">COP</option>
-                            <option value="CZK">CZK</option>
-                            <option value="DKK">DKK</option>
-                            <option value="DOP">DOP</option>
-                            <option value="EGP">EGP</option>
-                            <option value="MYR">MYR</option>
-                            <option value="NOK">NOK</option>
-                            <option value="NZD">NZD</option>
-                            <option value="PAB">PAB</option>
-                            <option value="PEN">PEN</option>
-                            <option value="PHP">PHP</option>
-                            <option value="PKR">PKR</option>
-                            <option value="PLN">PLN</option>
-                            <option value="PYG">PYG</option>
-                            <option value="RON">RON</option>
-                            <option value="RUB">RUB</option>
-                            <option value="SAR">SAR</option>
-                            <option value="SEK">SEK</option>
-                            <option value="SGD">SGD</option>
-                            <option value="THB">THB</option>
-                            <option value="TRY">TRY</option>
-                            <option value="TWD">TWD</option>
-                            <option value="UAH">UAH</option>
-                            <option value="USD">USD</option>
-                            <option value="UYU">UYU</option>
-                            <option value="VND">VND</option>
-                            <option value="ZAR">ZAR</option>
-                        </select>
-                    </div>
-                    <div class="form-group mx-sm-3 mb-2">
-                        <label>Convert To :</label>
-                        <select class="form-control" name="currencyTo" required>
-                            <option value="JOD" selected>JOD</option>
-                            <option value="EUR">EUR</option>
-                            <option value="USD">USD</option>
-                            <option value="AED">AED</option>
-                            <option value="CAD">CAD</option>
-                            <option value="CHF">CHF</option>
-                            <option value="CLP">CLP</option>
-                            <option value="CNY">CNY</option>
-                            <option value="COP">COP</option>
-                            <option value="CZK">CZK</option>
-                            <option value="DKK">DKK</option>
-                            <option value="DOP">DOP</option>
-                            <option value="EGP">EGP</option>
-                            <option value="MYR">MYR</option>
-                            <option value="NOK">NOK</option>
-                            <option value="NZD">NZD</option>
-                            <option value="PAB">PAB</option>
-                            <option value="PEN">PEN</option>
-                            <option value="PHP">PHP</option>
-                            <option value="PKR">PKR</option>
-                            <option value="PLN">PLN</option>
-                            <option value="PYG">PYG</option>
-                            <option value="RON">RON</option>
-                            <option value="RUB">RUB</option>
-                            <option value="SAR">SAR</option>
-                            <option value="SEK">SEK</option>
-                            <option value="SGD">SGD</option>
-                            <option value="THB">THB</option>
-                            <option value="TRY">TRY</option>
-                            <option value="TWD">TWD</option>
-                            <option value="UAH">UAH</option>
-                            <option value="USD">USD</option>
-                            <option value="UYU">UYU</option>
-                            <option value="VND">VND</option>
-                            <option value="ZAR">ZAR</option>
-                        </select>
-                    </div>
-                    <div class="form-group mb-2">
-                        <label for="amount">Enter Your Amount :</label>
-                        <input type="number" class="form-control" name="amount" required />
-                    </div>
+    <body>
+        <main class="currency">
+            <div id="header"></div>
+            <div class="jumbotron">
+                <h2 id="myHeader">Currency Calculator</h2>
+                <div class="container">
+                    <!-- <h2 class="headerClass">Currency Calculator</h2> -->
+                    <form class="form-inline" method="POST" action="/currency">
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label>Convert From :</label>
+                            <select class="form-control" name="currency" required>
+                                <option value="EUR" selected>EUR</option>
+                                <option value="JOD">JOD</option>
+                                <option value="USD">USD</option>
+                                <option value="AED">AED</option>
+                                <option value="CAD">CAD</option>
+                                <option value="CHF">CHF</option>
+                                <option value="CLP">CLP</option>
+                                <option value="CNY">CNY</option>
+                                <option value="COP">COP</option>
+                                <option value="CZK">CZK</option>
+                                <option value="DKK">DKK</option>
+                                <option value="DOP">DOP</option>
+                                <option value="EGP">EGP</option>
+                                <option value="MYR">MYR</option>
+                                <option value="NOK">NOK</option>
+                                <option value="NZD">NZD</option>
+                                <option value="PAB">PAB</option>
+                                <option value="PEN">PEN</option>
+                                <option value="PHP">PHP</option>
+                                <option value="PKR">PKR</option>
+                                <option value="PLN">PLN</option>
+                                <option value="PYG">PYG</option>
+                                <option value="RON">RON</option>
+                                <option value="RUB">RUB</option>
+                                <option value="SAR">SAR</option>
+                                <option value="SEK">SEK</option>
+                                <option value="SGD">SGD</option>
+                                <option value="THB">THB</option>
+                                <option value="TRY">TRY</option>
+                                <option value="TWD">TWD</option>
+                                <option value="UAH">UAH</option>
+                                <option value="USD">USD</option>
+                                <option value="UYU">UYU</option>
+                                <option value="VND">VND</option>
+                                <option value="ZAR">ZAR</option>
+                            </select>
+                        </div>
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label>Convert To :</label>
+                            <select class="form-control" name="currencyTo" required>
+                                <option value="JOD" selected>JOD</option>
+                                <option value="EUR">EUR</option>
+                                <option value="USD">USD</option>
+                                <option value="AED">AED</option>
+                                <option value="CAD">CAD</option>
+                                <option value="CHF">CHF</option>
+                                <option value="CLP">CLP</option>
+                                <option value="CNY">CNY</option>
+                                <option value="COP">COP</option>
+                                <option value="CZK">CZK</option>
+                                <option value="DKK">DKK</option>
+                                <option value="DOP">DOP</option>
+                                <option value="EGP">EGP</option>
+                                <option value="MYR">MYR</option>
+                                <option value="NOK">NOK</option>
+                                <option value="NZD">NZD</option>
+                                <option value="PAB">PAB</option>
+                                <option value="PEN">PEN</option>
+                                <option value="PHP">PHP</option>
+                                <option value="PKR">PKR</option>
+                                <option value="PLN">PLN</option>
+                                <option value="PYG">PYG</option>
+                                <option value="RON">RON</option>
+                                <option value="RUB">RUB</option>
+                                <option value="SAR">SAR</option>
+                                <option value="SEK">SEK</option>
+                                <option value="SGD">SGD</option>
+                                <option value="THB">THB</option>
+                                <option value="TRY">TRY</option>
+                                <option value="TWD">TWD</option>
+                                <option value="UAH">UAH</option>
+                                <option value="USD">USD</option>
+                                <option value="UYU">UYU</option>
+                                <option value="VND">VND</option>
+                                <option value="ZAR">ZAR</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="amount">Enter Your Amount :</label>
+                            <input type="number" class="form-control" name="amount" required />
+                        </div>
 
-                    <button class="btn calculate-btn btn-primary mb-2" id="send_profile">Show me the result!</button>
+                        <button class="btn calculate-btn btn-primary mb-2" id="send_profile">Convert!</button>
 
-                </form>
+                    </form>
 
-                <% if (amount){%>
-                    <div style="color: white;">
+                    <% if (amount){%>
+                        <div style="color: white; line-height: 3;">
 
-                        The Result is : <%=amount %>
-                            <%=toVal%>
-                    </div>
-                    <%}%>
+                            The Result is : <%=amount %>
+                                <%=toVal%>
+                        </div>
+                        <%}%>
 
+                </div>
             </div>
-        </div>
-        <div id="sidebar"></div>
-    </main>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <!-- <script>
-        $('#send_profile').click(function () {
-            $.ajax({
-                global: false,
-                type: 'GET',
-                url: /result,
-                dataType: 'html',
-                data: {
-                    name: $("#profile_name").val(),
-                    surname: $("#profile_surname").val(),
-                    age: $("#profile_age").val()
-                },
-                success: function (result) {
-                    console.log(result);
-                },
-                error: function (request, status, error) {
-                    serviceError();
-                }
-            });
-        })
-    </script> -->
-</body>
+            <div id="sidebar"></div>
+        </main>
+        <%- include('../layout/footer') %>
+    </body>
 
 </html>
