@@ -1,0 +1,14 @@
+:root{
+    --baseColor: #484a4d;
+    --iconFill: var(--baseColor);
+    --anchorColor: #eee;
+    --formFieldMargin: 0.875rem;
+    --loginBorderRadus: 0.25rem;
+    --loginColor: #eee;
+    --loginInputBackgroundColor: #3b4148;
+    --loginInputHoverBackgroundColor: #434a52;
+    --loginLabelBackgroundColor: #363b41;
+    --loginSubmitBackgroundColor: #ddd;
+    --loginSubmitColor: #434a52;
+    --loginSubmitHoverBackgroundColor: rgb(170, 170, 170);
+}
