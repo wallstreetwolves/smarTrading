@@ -20,9 +20,9 @@ var session = require('express-session');
 // postgresql
 const pg = require('pg');
 // Local Database
-// const client = new pg.Client(process.env.DATABASE_URL);
+const client = new pg.Client(process.env.DATABASE_URL);
 // Heroku Database
-const client = new pg.Client({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
+// const client = new pg.Client({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
 
 //Application Setup
 
@@ -48,6 +48,7 @@ app.get('/trade', stockHandler);
 app.put('/trade', saveFun);
 app.get('/currency', currencyRender);
 app.post('/currency', currencyResult);
+app.get('/about', aboutUsRender)
 // app.get('/news', newsHandler);
 // app.post('/currency', currHandler);
 // app.post('/contact', contactHandler);
@@ -245,6 +246,10 @@ function News(data) {
     this.urlToImage = data.urlToImage
     this.publishedAt = data.publishedAt
     this.content = data.content
+}
+
+function aboutUsRender(req, res) {
+    res.render('pages/about');
 }
 
 // ------------------------------

@@ -13,7 +13,7 @@ body{
 }
 
 header{
-    padding: 0 30px;
+    padding: 10px 30px;
     display: grid;
     grid-template-columns: 1fr 4fr;
     align-items: center;
