@@ -1,5 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+@import url('https://unpkg.com/swiper/swiper-bundle.min.css');
+
 @import url(reset.css);
 @import url(base.css);
 @import url(layout.css);
 @import url(modules.css);
 @import url(state.css);
+
+/* Index */
+@import url(index/base.css);
+@import url(index/layout.css);
+@import url(index/modules.css);
+@import url(index/state.css);
+
+/* Sign Up */
+@import url(signup/signup.css);
+
+/* trade */
+/* @import url(tradeBase.css);
+@import url(form.css); */
+
+/* currency */
+@import url(currency.css);
+
+/* News */
+@import url(news.css);
+
+/* About Us */
+@import url(aboutus.css);
+
+*{
+    font-family: 'Quicksand', sans-serif;
+}
+a{
+    font-family: 'Quicksand', sans-serif;
+}

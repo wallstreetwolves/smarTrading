@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<%- include('../layout/head') %>
+
+    <body class="news">
+        <main class="news">
+            <div id="header">
+                <%- include('../layout/header') %>
+            </div>
+            <div id="sideBar">
+                <%- include('../layout/sidebar') %>
+            </div>
+            <div id="container">
+                <h1>News</h1>
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <% newsData.forEach(element=> { %>
+                            <div class="swiper-slide">
+                                <div class="cards">
+                                    <img src="<%=element.urlToImage%>" alt="" class="cardImg">
+                                    <h3>
+                                        <%=element.title %>
+                                    </h3>
+                                    <h4>
+                                        <%=element.description %>
+                                            </p>
+                                            <p>Published At: <%=element.publishedAt %>
+                                            </p>
+                                </div>
+                            </div>
+                            <% }); %>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </main>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+        <script src="js/analytic.js"></script>
+    </body>
+
+</html>

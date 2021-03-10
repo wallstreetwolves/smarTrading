@@ -1,0 +1,54 @@
+/* header */
+header.index{
+    padding: 30px;
+}
+
+header.index nav{
+    font-size: 3vh;
+    text-align: end;
+    padding-right: 5%;
+}
+
+/* modal */
+.modal{
+    display: block;
+    position: absolute;
+    z-index: 1;
+    top: 100px;
+    right: 0;
+    line-height: 1.5;
+}
+
+.modal input{
+    font-size: 2.2vh;
+    padding: 5px;
+}
+
+/* main */
+main.index p{
+    text-align: center;
+    line-height: 1.5;
+    font-size: 2em;
+    padding: 6vh 0 2vh 0;
+}
+
+#mainButton{
+    margin: 0 auto;
+    text-align: center;
+}
+
+#start {
+	cursor:pointer;
+    color: rgba(255, 255, 255, 0.8);
+    background: #12b82e;
+    padding: .5vh 2vh;
+    border:none;
+    font-size: 3vh;
+    width: 25vh;
+    height: 7.5vh;
+    border-radius: 1.5vh;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 0 5px 2px #63ff6359;
+}
