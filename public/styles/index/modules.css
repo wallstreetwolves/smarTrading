@@ -11,10 +11,11 @@ header.index nav form{
 
 header.index nav form button{
     width: 15vh;
-    font-family: serif;
+    /* font-family: serif; */
+    font-weight: 700;
     font-size: 3vh;
     border: none;
-    border-radius: 15px;
+    border-radius: 8px;
     padding: 5px 10px;
     cursor: pointer;
 }
