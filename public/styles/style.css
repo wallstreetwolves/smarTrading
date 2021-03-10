@@ -31,6 +31,9 @@
 /* About Us */
 @import url(aboutus.css);
 
+/* contact */
+@import url(contact.css);
+
 *{
     font-family: 'Quicksand', sans-serif;
 }

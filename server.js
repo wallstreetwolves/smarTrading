@@ -51,6 +51,7 @@ app.get('/currency', currencyRender);
 app.post('/currency', currencyResult);
 app.get('/about', aboutUsRender)
 app.get('/contact', contactRoute);
+app.post('/contact', contactSub);
 // app.get('/news', newsHandler);
 // app.post('/currency', currHandler);
 // app.post('/contact', contactHandler);
@@ -253,9 +254,17 @@ function aboutUsRender(req, res) {
     }
 }
 
-function contactRoute (req, res) {
-      if (req.session.loggedin) {
-        res.render('pages/contact', { profile: { username: req.session.username, name: name, balance: balance } });
+function contactRoute(req, res) {
+    if (req.session.loggedin) {
+        res.render('pages/contact', { text: '', profile: { username: req.session.username, name: name, balance: balance } });
+    } else {
+        res.redirect('/');
+    }
+}
+
+function contactSub(req, res) {
+    if (req.session.loggedin) {
+        res.render('pages/contact', { text: req.body.user_name, profile: { username: req.session.username, name: name, balance: balance } });
     } else {
         res.redirect('/');
     }

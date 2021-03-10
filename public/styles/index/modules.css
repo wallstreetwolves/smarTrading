@@ -2,6 +2,7 @@
 header.index nav>a{
     color: white;
     padding: 10px;
+    text-transform: uppercase;
 }
 
 header.index nav form{
