@@ -1,60 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="styles/news.css">
-
-</head>
-<body>
-   
-    <main>
-        <div id="header"></div>
-<div id="sideBar">
-<div id="profileU">
-
-    <div id="nameU">Ayoub</div>
-    <div id="balanceU">Your Balance :</div>
- <!-- <div id="balanceV">50000</div> -->
-    <div id="balanceV">50000 $</div>
-    <img id="money"src="img/sideBar/money (2).png" alt="">
-
-  
-</div>
-<div id="buttonsS"> 
-
- <div id="tradeSide">Trade</div>
-<img id="tradeImgS" src="img/sidebar/money (3).png" alt="">
-<div id="analayticsS">Analaytics</div>
-<img id="analyticImg" src="img/sidebar/money (4).png" alt="">
-<div id="aboutSide">About</div>
-<img id="aboutimgSide" src="img/sidebar/New Project (4).png" alt="">
 
 
-</div>
+<%- include('../layout/head') %>
 
-</div>
+    <body class="news">
+        <main class="news">
+            <div id="header">
+                <%- include('../layout/header') %>
+            </div>
+            <div id="sideBar">
+                <%- include('../layout/sidebar') %>
+            </div>
+            <div id="container">
+                <h1>News</h1>
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <% newsData.forEach(element=> { %>
+                            <div class="swiper-slide">
+                                <div class="cards">
+                                    <img src="<%=element.urlToImage%>" alt="" class="cardImg">
+                                    <h3>
+                                        <%=element.title %>
+                                    </h3>
+                                    <h4>
+                                        <%=element.description %>
+                                            </p>
+                                            <p>Published At: <%=element.publishedAt %>
+                                            </p>
+                                </div>
+                            </div>
+                            <% }); %>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </main>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+        <script src="js/analytic.js"></script>
+    </body>
 
-<div id="container">
-    <h1>News</h1>
-    <div class="swiper-container">
-        <div class="swiper-wrapper">
-
-<!--    -->
-    </div>
-        <div class="swiper-pagination"></div>
-    </div>
-  
-    </div>
-    </main>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="js/analytic.js"></script>
-   
-</body>
 </html>

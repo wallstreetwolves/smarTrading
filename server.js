@@ -46,6 +46,7 @@ app.post('/auth', signin);
 app.post('/auth/signout', signout);
 app.get('/trade', stockHandler);
 app.put('/trade', saveFun);
+app.get('/analytics', Analytic);
 app.get('/currency', currencyRender);
 app.post('/currency', currencyResult);
 app.get('/about', aboutUsRender)
@@ -60,11 +61,6 @@ let name, balance;
 
 function homeRoute(req, res) {
     if (req.session.loggedin) {
-
-        console.log(balance);
-        // let SQL = `SELECT * `
-
-
         res.render('pages/index', { profile: { username: req.session.username, name: name, balance: balance } });
     } else {
         res.render('pages/index', { profile: { username: '' } });
@@ -135,10 +131,10 @@ function signout(req, res) {
 }
 
 function stockHandler(req, res) {
-    if (!name) {
-        res.redirect('/');
-    } else {
+    if (req.session.loggedin) {
         res.render('pages/trade', { profile: { username: req.session.username, name: name, balance: balance } })
+    } else {
+        res.redirect('/');
     }
 }
 
@@ -155,7 +151,11 @@ function saveFun(req, res) {
 }
 
 function currencyRender(req, res) {
-    res.render('pages/currency', { amount: 0 });
+    if (req.session.loggedin) {
+        res.render('pages/currency', { amount: 0, profile: { username: req.session.username, name: name, balance: balance } });
+    } else {
+        res.redirect('/');
+    }
 }
 
 function currencyResult(req, res) {
@@ -165,7 +165,7 @@ function currencyResult(req, res) {
     let url = `https://api.getgeoapi.com/api/v2/currency/convert?api_key=c702e3ea2e9b3cdd104a7aa7bbc328e839c54850&from=${fromValue}&to=${toValue}&amount=${amount}&format=json`;
     superagent.get(url)
         .then(booksResult => {
-            res.render('pages/currency', { amount: booksResult.body.rates[toValue].rate_for_amount, toVal: booksResult.body.rates[toValue].currency_name });
+            res.render('pages/currency', { amount: booksResult.body.rates[toValue].rate_for_amount, toVal: booksResult.body.rates[toValue].currency_name, profile: { username: req.session.username, name: name, balance: balance } });
         })
         .catch(() => {
             console.log('catch ', req.query.currency);
@@ -174,7 +174,6 @@ function currencyResult(req, res) {
 
 ///---------------analytic rout and function-------------------\\\
 
-app.get('/analytics', Analytic)
 //------------------------------function anayltic
 let trigger = false
 let count = 1;
@@ -188,47 +187,41 @@ function Analytic(req, res) {
     const decreaseDate = new Date(Date.now() - 1814400000 - 259200000);
     const date = new Date(decreaseDate).toISOString().slice(0, 10)
     allData = []
-
-
     //////-------------------while
     selected = [];
-    // while (count < 16) {
-    //     count++;
-    //     do {
-    //         if (count == 6) {
-    //             trigger = true
-    //         }
-    //         var index = getrandomnumber()
-    //     }
+    while (count < 16) {
+        count++;
+        do {
+            if (count == 6) {
+                trigger = true
+            }
+            var index = getrandomnumber()
+        }
+        while (selected.includes(companies[index]))
+        selected.push(companies[index])
+        let ApiKey = process.env.API_KEY_NEWS
+        let url = `http://newsapi.org/v2/everything?qInTitle=${companies[index]}%stock&from=${date.toString()}&sortBy=popularity&language=en&apiKey=${ApiKey}`
+        superagent.get(url).then(result => {
+            if (result.body.articles.length > 0) {
+                let temp = new News(result.body.articles[0])
+                allData.push(temp)
+            }
+            else {
+                count--
+            }
+            return allData
+        }).then((resultnew) => {
+            if (allData.length == 14) {
+                count = 1
+                if (req.session.loggedin) {
+                    res.render("pages/analytics", { newsData: resultnew, profile: { username: req.session.username, name: name, balance: balance } })
+                } else {
+                    res.redirect('/');
+                }
+            }
 
-    //     while (selected.includes(companies[index]))
-    //     selected.push(companies[index])
-    //     let ApiKey = process.env.API_KEY_NEWS
-    //     let url = `http://newsapi.org/v2/everything?qInTitle=${companies[index]}%stock&from=${date.toString()}&sortBy=popularity&language=en&apiKey=${ApiKey}`
-    //     superagent.get(url).then(result => {
-    //         if (result.body.articles.length > 0) {
-    //             let temp = new News(result.body.articles[0])
-    //             allData.push(temp)
-    //         }
-
-    //         else {
-    //             count--
-    //         }
-
-
-    //         return allData
-
-
-    //     }).then((resultnew) => {
-    //         if (allData.length == 14) {
-    //             count = 1
-    //             res.render("pages/analytics", { newsData: resultnew })
-
-    //         }
-
-    //     })
-    // }
-    res.render("pages/analytics")
+        })
+    }
 }
 /////-----------end while
 
@@ -250,7 +243,11 @@ function News(data) {
 }
 
 function aboutUsRender(req, res) {
-    res.render('pages/about');
+    if (req.session.loggedin) {
+        res.render('pages/about', { profile: { username: req.session.username, name: name, balance: balance } });
+    } else {
+        res.redirect('/');
+    }
 }
 
 // ------------------------------

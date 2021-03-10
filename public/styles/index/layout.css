@@ -27,7 +27,7 @@ header.index nav{
 /* main */
 main.index p{
     text-align: center;
-    font-family: 'Quicksand', sans-serif;
+    line-height: 1.5;
     font-size: 2em;
     padding: 6vh 0 2vh 0;
 }
@@ -41,13 +41,13 @@ main.index p{
 	cursor:pointer;
     color: rgba(255, 255, 255, 0.8);
     background: #12b82e;
-    padding: 2vh 5vh;
+    padding: .5vh 2vh;
     border:none;
     font-size: 3vh;
-    width: 30vh;
+    width: 25vh;
     height: 7.5vh;
     border-radius: 1.5vh;
-    font-weight: normal;
+    font-weight: 700;
     text-transform: uppercase;
     transition: all 0.2s ease-in-out;
     box-shadow: 0 0 5px 2px #63ff6359;
