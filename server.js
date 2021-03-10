@@ -41,6 +41,9 @@ server.get('/', (req, res) => {
     res.render('pages/about', { amount: 0 });
 })
 
+server.get('/contact', (req, res) => {
+    res.render('pages/contact', { amount: 0 });
+})
 
 server.get('/currency', (req, res) => {
     res.render('pages/currency', { amount: 0 });
