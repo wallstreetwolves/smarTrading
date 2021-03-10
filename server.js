@@ -20,9 +20,9 @@ var session = require('express-session');
 // postgresql
 const pg = require('pg');
 // Local Database
-// const client = new pg.Client(process.env.DATABASE_URL);
+const client = new pg.Client(process.env.DATABASE_URL);
 // Heroku Database
-const client = new pg.Client({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
+// const client = new pg.Client({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
 
 //Application Setup
 
@@ -192,42 +192,43 @@ function Analytic(req, res) {
 
     //////-------------------while
     selected = [];
-    while (count < 16) {
-        count++;
-        do {
-            if (count == 6) {
-                trigger = true
-            }
-            var index = getrandomnumber()
-        }
+    // while (count < 16) {
+    //     count++;
+    //     do {
+    //         if (count == 6) {
+    //             trigger = true
+    //         }
+    //         var index = getrandomnumber()
+    //     }
 
-        while (selected.includes(companies[index]))
-        selected.push(companies[index])
-        let ApiKey = process.env.API_KEY_NEWS
-        let url = `http://newsapi.org/v2/everything?qInTitle=${companies[index]}%stock&from=${date.toString()}&sortBy=popularity&language=en&apiKey=${ApiKey}`
-        superagent.get(url).then(result => {
-            if (result.body.articles.length > 0) {
-                let temp = new News(result.body.articles[0])
-                allData.push(temp)
-            }
+    //     while (selected.includes(companies[index]))
+    //     selected.push(companies[index])
+    //     let ApiKey = process.env.API_KEY_NEWS
+    //     let url = `http://newsapi.org/v2/everything?qInTitle=${companies[index]}%stock&from=${date.toString()}&sortBy=popularity&language=en&apiKey=${ApiKey}`
+    //     superagent.get(url).then(result => {
+    //         if (result.body.articles.length > 0) {
+    //             let temp = new News(result.body.articles[0])
+    //             allData.push(temp)
+    //         }
 
-            else {
-                count--
-            }
-
-
-            return allData
+    //         else {
+    //             count--
+    //         }
 
 
-        }).then((resultnew) => {
-            if (allData.length == 14) {
-                count = 1
-                res.render("pages/analytics", { newsData: resultnew })
+    //         return allData
 
-            }
 
-        })
-    }
+    //     }).then((resultnew) => {
+    //         if (allData.length == 14) {
+    //             count = 1
+    //             res.render("pages/analytics", { newsData: resultnew })
+
+    //         }
+
+    //     })
+    // }
+    res.render("pages/analytics")
 }
 /////-----------end while
 
