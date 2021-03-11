@@ -3,8 +3,8 @@
 let trigger = true;
 let flicker = true;
 let counter = 120000;
-let start = 1614952000;
-let end = 1614952600;
+let start = 1615280373;
+let end;
 let companies = ['AAPL', 'MSFT', 'AMZN', 'GOOGL', 'FB', 'BABA', 'TSLA', 'V', 'WMT', 'DIS', 'BAC', 'NVDA', 'MA', 'PYPL', 'INTC', 'NFLX', 'KO', 'ADBE', 'NKE', 'SBUX', 'CAT', 'ORCL', 'CSCO', 'PFE']
 let M = parseFloat($('#balance').text());
 $('#balanceM').val(M)
@@ -13,7 +13,7 @@ let mirror = 0;
 /*-------------------------------------------------Calling Fuunctions------------------------------------------*/
 let Arr = [];
 getData()
-// setInterval(getData, 60000)
+setInterval(getData, 60000)
 
 /*-----------------------------------------Fetching Data From Api & Update it Each 1 Min----------------------------*/
 
@@ -21,10 +21,15 @@ getData()
 /*----------------------------------------------------مشان الله بدل start و end-------------------- */
 
 function getData() {
-    //     let end = Math.floor(Date.now() / 1000)
+        // let end = Math.floor(Date.now() / 1000)-60
+        console.log(end);
+         start = start+60
+        end = start +600
+
+        // console.log(start);
     // if (trigger) {
-    end = end + 60
-    start = start + 60
+    // end = end + 60
+    // start = start + 60
     // trigger = false;
     // }
     let x = 2;

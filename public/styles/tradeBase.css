@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
 
+body{
+    color: black
+}
 *{
     font-family: -webkit-pictograph;
 }
@@ -317,7 +320,7 @@ top: -15px;
     font-size: 25px;
     margin: 5px 0 0 0;
     text-align: center;
-    padding-bottom: 9px;
+    padding-bottom: 8px;
     border-bottom: 1px outset rgb(189, 189, 189);
     color: wheat;
 }
@@ -435,7 +438,7 @@ top: -15px;
     color: wheat;
     display: block;
     border-bottom: 1px outset rgb(189, 189, 189);
-    padding: 0 0px 13px 61px;
+    padding: 0 0px 13px 65px;
     font-size: 23px;
 }
 
