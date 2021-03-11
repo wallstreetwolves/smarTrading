@@ -1,0 +1,25 @@
+* {
+  box-sizing: inherit;
+}
+
+html{
+    background-color: rgb(209, 209, 209);
+    overflow: hidden;
+}
+
+body{
+    color: white;
+    position: relative;
+}
+
+header{
+    padding: 10px 30px;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    align-items: center;
+}
+
+#logo img{
+    width: 200px;
+    max-height: 100px;
+}

@@ -11,7 +11,7 @@ This project is an online library, where you can find books based on a title or 
 Afnan Damra - Ayoub Kandah - Hamza Shamoun - Yazan Eyad
 
 ### Deployed Site:
-[Link]()
+[Link](https://smartrading-wsw.herokuapp.com/)
 
 ### Architecture
 - EJS - CSS - JavaScript fore the front-end
@@ -57,3 +57,5 @@ $ npm i express cors superagent ejs dotenv pg method-override
 
 
 ## Credits and Collaborations:
+- [Form styling](https://codepen.io/marcobiedermann/pen/Fybpf)
+- [Styling](https://codepen.io/sylvmrtn/pen/zvvrXv)

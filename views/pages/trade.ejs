@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/img/mark.png" type="image/x-icon">
+    <title>smarTrading</title>
+    <link rel="stylesheet" href="../styles/style.css">
+
+    <!-- <link rel="stylesheet" href="styles/reset.css"> -->
+    <link rel="stylesheet" href="styles/tradeBase.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+
+    <script id="companyTemp" type="text/-template-mustache">
+    <div id="{{compName}}" class="company">
+
+        <img src="img/companies/{{compName}}.png" alt="">
+
+        <h3>{{compName}}</h3>
+
+        <h4>{{openP}}</h4>
+
+        <h5>{{closeP}}</h5>
+
+        {{{changeRatio}}}
+
+
+
+
+        
+        <div class ="chart"><canvas id="{{compName}}1" width="250" height="150"></canvas></div>
+
+        <button type="button" id="{{compName}}BtnBuy" class="buy"> Trade </button>
+        
+     </div>
+    </script>
+
+
+
+</head>
+
+<body>
+    <main>
+        <div id="header">
+            <%- include('../layout/header') %>
+        </div>
+
+
+        <div id="platFormContainer">
+
+            <div id="tradePlatform">
+                <div id="tradeHead">
+                    <h1>Symbol</h1>
+                    <h1>Open Price</h1>
+                    <h1>Close Price</h1>
+                    <h1>1M Change</h1>
+                </div>
+            </div>
+        </div>
+
+        <div id="sideBar">
+            <%- include('../layout/sidebar') %>
+        </div>
+    </main>
+    <section class="section">
+
+       
+        <div class="containter">
+            <div id="logoo"></div>
+            <div id="profile">
+                <img src="img/companies/avatar.png" alt="">
+                <h2>
+                    <%=profile.name%>
+                </h2>
+                <h1>
+                   Balance
+                </h1>
+                <label id="balance" for="balance">
+                    <%=profile.balance%>
+                </label><br>
+            </div>
+            <div id="arrow">
+                <p></p>
+                <div id="imgArrow"></div>
+            </div>
+       
+            <div id="timer">
+                <p></p>
+            </div>
+            <div id="chartTrade"></div>
+
+
+     <section id="bbbb">
+        <div id="formDiv">
+            <form id="buyForm" action="">
+
+
+                <label id="stockL" for="Stocks" required></label><br>
+
+                <input id="int123" placeholder="Stocks" type="number">
+                <br>
+
+
+                <label id="stockPr" for="Price">Last Price</label><br>
+                <h1></h1>
+                <label id="ownStock" for=""> Your Own Stocks : 0 </label>
+                
+                <button id="btnS" type="button">SELL</button>
+                <button id="btnB" type="button">BUY</button><br>
+
+
+
+
+            </form>
+            <div id="save" class="Save">
+
+                <form action="/trade/?method=put" method="POST">
+                    <input id="balanceM" name="newBalance" type="hidden">
+                    <button id="submitBtn" type="submit"> Confirm </button>
+                </form>
+    
+            </div>
+    
+            <div id="save" class="unSave" style="display: none;">
+                <button id="unSave"> Confirm </button>
+    
+            </div>
+
+     </section>       
+           
+
+                
+            </div>
+
+          
+        </div>
+    </section>
+    <footer></footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.1.0/mustache.js"
+        integrity="sha512-SDpqS2G7Z70bGQSl26nhAdQj9YJoQqMOJVBVqE1EyEaAAzdvLFNZ0R06FzBu+E8xTcmbd2dBhvBJuJrbEUiKqA=="
+        crossorigin="anonymous"></script>
+    <script type="module" src="app1.js"></script>
+
+</body>
+
+</html>

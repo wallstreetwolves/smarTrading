@@ -1,0 +1,52 @@
+body{
+    background-color: hotpink;
+}
+main{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    max-width:50%;
+    height: 80vh;
+    margin:10vh 0 0 25%;
+}
+aside{
+    grid-column: 1/2;
+    background-color: green;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+aside img{
+    grid-row: 1/2;
+    background-color: indigo;
+}
+aside h3 {
+    grid-row: 2/3;
+    background-color: lawngreen;
+}
+aside h4 {
+    grid-row: 3/4;
+    background-color: maroon;
+}
+section{
+    grid-column: 2/3;
+    background-color: gold;
+    display: grid;
+    grid-template-rows: 3fr 1fr;
+}
+section #canvas {
+    grid-row: 1/2;
+    background-color: mediumblue;
+}
+section #content {
+    grid-row: 2/3;
+    background-color: navy;
+}
+
+
+
+
+
+
+
+
+
+

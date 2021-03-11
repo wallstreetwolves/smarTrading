@@ -1,0 +1,118 @@
+body.contact {
+    height: 100vh;
+    background: linear-gradient(rgba(1, 4, 39, 0.8), rgba(14, 73, 75, 0.8));
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    grid-template-rows: 1fr 5fr;
+    overflow: hidden;
+}
+body.contact #header{
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+  body.contact main{
+    grid-column: 1/2;
+    grid-row: 2/3;
+  }
+  body.contact h1{
+    position: relative;
+    margin: 20px auto 0 auto;
+    font-size: 4vh;
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    color: #ddd;
+  }
+  body.contact #sidebar{
+    background-image: url("../img/sidebar/s3-finance_0--default--1280.jpg");
+    background-position: center;
+    background-size: cover;
+    grid-column: 2/3;
+    grid-row: 1/3;
+    border-left: 1px solid black;
+  }
+body.contact label,
+body.contact input,
+body.contact textarea {
+    display: block;
+    font-weight: 700;
+    width: 100%;
+}
+
+body.contact ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+body.contact li {
+    padding: 0.3em;
+}
+
+body.contact span {
+    font-weight: 700;
+    /* color: #102a43; */
+    line-height: 35px;
+    line-height: 2.5rem;
+    font-size: 12px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+body.contact input[type="submit"] {
+    background-color: #12b82e;
+    color: white;
+    font-weight: 700;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    margin-top: .5em;
+}
+
+body.contact input[type="submit"]:hover{
+    background: #02d359;
+    cursor: pointer;
+}
+
+body.contact .container {
+    width: 50%;
+    margin: 1.5em auto;
+}
+
+body.contact form {
+    /* background-color: #ffffff; */
+    background-color: #eee;;
+    box-shadow: 0px 0px 4px  2px rgba(126, 126, 126, 0.568);
+    padding-top: 30px;
+    padding-right: 40px;
+    padding-bottom: 20px;
+    padding-left: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+body.contact .required-star {
+    color: #fc4366;
+}
+
+body.contact input,
+body.contact textarea {
+    width: 95%;
+    background-color: #fff;
+    color: #102a43;
+    caret-color: #829ab1;
+    box-sizing: border-box;
+    font-size: 1rem;
+    line-height: 2rem;
+    padding: 12px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    /* resize: vertical; */
+}
+
+body.contact .container h3 {
+    text-align: center;
+    font-size: xx-large;
+    color: white;
+}

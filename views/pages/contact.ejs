@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../layout/head') %>
+
+    <body class="contact">
+        <div id="header">
+            <%- include('../layout/header') %>
+        </div>
+        <main>
+            <h1>Contact Us</h1>
+            <div class="container">
+                <form action="/contact" method="POST">
+
+                    <ul>
+                        <li>
+                            <input type="text" id="name" name="user_name" placeholder="Name">
+                        </li>
+                        <li>
+                            <input type="email" id="mail" name="user_email" placeholder="Email">
+                        </li>
+                        <li>
+                            <textarea rows="4" cols="50" placeholder="Message......"></textarea>
+                        </li>
+                        <li>
+                            <input type="submit">
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </main>
+        <div id="sidebar">
+            <%- include('../layout/sidebar') %>
+        </div>
+        <%- include('../layout/footer') %>
+    </body>
+
+</html>
