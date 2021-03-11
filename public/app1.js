@@ -13,7 +13,7 @@ let mirror = 0;
 /*-------------------------------------------------Calling Fuunctions------------------------------------------*/
 let Arr = [];
 getData()
-setInterval(getData, 60000)
+// setInterval(getData, 60000)
 
 /*-----------------------------------------Fetching Data From Api & Update it Each 1 Min----------------------------*/
 
@@ -132,10 +132,15 @@ let s = 0;
 
 function Chartresult(val, val1, time) {
     let ctx;
+    let T;
+    let K ;
     if (flicker) {
         ctx = document.getElementById(`${val1}1`).getContext('2d');
-
+         T = 'rgba(1, 4, 39, 0.2)'
+         K = 'darkblue'
     } else if (flicker == false) {
+         T = 'rgba(85 ,85 ,97 , 0.2)'
+         K = 'rgba(75, 192, 192,0.5)'
         ctx = document.getElementById(`${val1}2`).getContext('2d');
     }
     let timeUsa = time.map(e => {
@@ -144,48 +149,69 @@ function Chartresult(val, val1, time) {
         let Y = `${H}:${M}`
         return Y
     })
+
     let chart = new Chart(ctx, {
         type: 'line',
-        data: {
-
-            labels: timeUsa,
-            datasets: [{
-                label: '',
-                backgroundColor: 'rgba(99, 132, 0, 0)',
-                borderColor: 'rgb(255, 99, 132)',
-                borderWidth: 3,
-                // pointBorderWidth: 1,
-                // pointBackgroundColor: `blue`,
-                pointBorderColor: `rgba(99, 132, 0, 0)`,
-                data: val,
-                // pointStyle: 'line'
-            }]
-        },
-        options: {
-            legend: {
-                display: false
-            },
-            scales: {
-                yAxes:
-                    [{
-                        ticks: {
-                            display: false
-                        },
-                        gridLines: {
-                            color: "rgba(1, 1, 1, 0.2)",
-                        }
-                    }],
-                xAxes: [{
-                    ticks: {
-                        display: false
-                    },
+			data: {
+				labels: ['', '', '', '', '', '', '', '', '', '', ''],
+				datasets: [{
+					label: '',
+					data: val,
+                    
+                    
                     gridLines: {
-                        color: "rgba(1, 1, 1, 0.2)",
-                    }
-                }]
-            }
+                        display: true ,
+                        color: "#FFFFFF"
+                      },
 
-        }
+
+                    // borderColor: 'rgba(75, 192, 192,0.5)' ,
+                    
+                    pointBorderWidth: false,
+
+                    pointBackgroundColor: `rgba(0, 0, 0, 0)`,
+
+					borderColor: K,
+                    borderWidth:1,
+					backgroundColor: T,
+                    
+					fill: true
+				}]
+			},
+          
+			options: {
+             
+                legend: {
+                    display: false
+                },
+				responsive: true,
+				plugins: {
+					title: {
+						display: true,
+						text: 'Chart.js Line Chart - Cubic interpolation mode'
+					},
+					tooltip: {
+						mode: 'index'
+					}
+				},
+				scales: {
+					x: {
+						display: true,
+						title: {
+							display: true
+						}
+					},
+					y: {
+						display: true,
+						title: {
+							display: true,
+							text: 'Value'
+						},
+						suggestedMin: -10,
+						suggestedMax: 200
+					}
+				}
+			}
     });
 }
 
@@ -205,12 +231,6 @@ function code(val, datat) {
 
 
     $(`#${val}BtnBuy`).on('click', function () {
-        
-
-
-       
-
-
         
         let g = setInterval(() => {
             let index = Arr.findIndex(x => x.compName ===`${val}`); 
@@ -236,35 +256,36 @@ function code(val, datat) {
 
            
                 $('#buyForm h1').text(Arr[index].closeP)
-                $('#arrow p').text(Arr[index].closeP)
+                $('#arrow p').text(`${c}%`)
         
                 }
             s += 1000
-            var d = new Date(125000 - s);
+            var d = new Date(185000 - s);
             var u = d.toTimeString().slice(3, 8);
 
-            $('#timer').text(`Time : ${u}`)
-            if (s == 125000) {
+            $('#timer p').text(u)
+            if (s == 185000) {
                 clearInterval(g)
-                alert('')
+                alert('Time`s Up .... Your Deal Broken')
                 location.reload()
             }
         }, 1000)
 
-        $('main').css('opacity', '0.1')
+        $('main').css('opacity', '0.6')
+        $('main').css('filter','blur(12px)')
 
         flicker = false
         $('.section').toggle();
 
 
-        $(`#logo`).html(`<img src="img/companies/${val}.png" alt=""></img> <p>${val}</p>`);
+        $(`#logoo`).html(`<img src="img/companies/${val}.png" alt=""></img> <p>${val}</p>`);
         
         // let c = parseFloat((((datat.c[datat.c.length - 1] - datat.c[datat.c.length - 2]) / datat.c[datat.c.length - 2]) * 100).toFixed(2))
         
         
         // $('#arrow p').text(datat.c[datat.c.length - 1])
         // $(`#tradePlatform #${val} .chart`).remove()
-        $(`#chartTrade`).html(`<div class="chart"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div><canvas id="${val}2" width="200" height="100" class="chartjs-render-monitor" style="display: block;"></canvas></div>`)
+        $(`#chartTrade`).html(`<div class="chart"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div><canvas id="${val}2" width="600" height="280" class="chartjs-render-monitor" style="padding-top: 20px; " ></canvas></div>`)
         Chartresult(datat.c, val, datat.t)
 
 
@@ -347,36 +368,3 @@ function code(val, datat) {
 
 
 }
-
-// }
-/* <section class="section">
-    
-   
-    <div id="timer"></div>
-
-
-
-
-    <div id="formDiv">
-        <form id="buyForm" action="" method="POST">
-            <label for="balance">Balance</label><br>
-            <label for="Stocks">Stocks</label><br>
-            <input type="number"><br>
-            <label for="lastPrice">Last Price</label><br>
-            <h1></h1>
-            <button type="submit" >SELL</button>
-            <button type="submit">BUY</button><br>
-        </form>
-    </div>
-</section> */
-
-
-
-/*-------------------------------------------------------codeing the form page--------------------------------------*/
-// codeForm(val)
-// function codeForm(val) {
-//     console.log(val)
-//     $('aside h3').on('click', () => {
-//         $('aside h3').css('background-color', 'black')
-//     })
-// }
