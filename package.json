@@ -29,6 +29,5 @@
     "nodemon": "^2.0.7",
     "pg": "^8.5.1",
     "superagent": "^6.1.0"
-  },
-  "devDependencies": {}
+  }
 }
